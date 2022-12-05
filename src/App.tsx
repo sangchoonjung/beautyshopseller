@@ -8,13 +8,13 @@ import Main from "./components/mainhome/main";
 function App() {
   return (
     <div className="App">
-      <BaseLayer>
-        <BrowserRouter>
+      <BrowserRouter>
+        <BaseLayer>
           <Routes>
             <Route path="/" element={<Main />} />
           </Routes>
-        </BrowserRouter>
-      </BaseLayer>
+        </BaseLayer>
+      </BrowserRouter>
     </div>
   );
 }
