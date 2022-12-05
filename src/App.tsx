@@ -24,6 +24,7 @@ function App() {
           </BaseLayer>
         </BrowserRouter>
       </Context.Provider>
+
     </div>
   );
 }
