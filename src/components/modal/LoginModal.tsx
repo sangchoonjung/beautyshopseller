@@ -3,7 +3,14 @@ import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
-import { TextField } from "@mui/material";
+import PartOfLoginInput from "../aboutLogin/PartOfLoginInput";
+import PartOfFindIdAndPass from "../aboutLogin/PartOfFindIdAndPass";
+import { useState, useContext } from "react";
+import LoginStateContextProvider, {
+  LoginStateContext,
+} from "../../context/LoginStateContext";
+import PartOfSignUpButton from "../aboutSignUp/PartOfSignUpButton";
+import PartOfSignUpInput from "../aboutSignUp/PartOfSignUpInput";
 
 const style = {
   position: "absolute" as "absolute",
@@ -17,13 +24,15 @@ const style = {
   p: 4,
 };
 
-function LoginModal() {
+function LoginModalContainer() {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+  const LoginCtx = useContext(LoginStateContext);
+  console.log(LoginCtx?.LoginModalState, "상태");
 
   return (
-    <div>
+    <Box sx={{ width: "200px" }}>
       <Typography onClick={handleOpen}>Login</Typography>
       <Modal
         open={open}
@@ -32,13 +41,34 @@ function LoginModal() {
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
-          <Typography id="modal-modal-title" variant="h6" component="h2">
-            login 하기
-          </Typography>
-          <TextField id="filled-basic" label="Filled" variant="filled" />
+          {LoginCtx?.LoginModalState == "Login" && (
+            <Box>
+              <Typography id="modal-modal-title" variant="h6" component="h2">
+                로그인 모달
+              </Typography>
+              <PartOfLoginInput />
+              <PartOfFindIdAndPass />
+              <PartOfSignUpButton />
+            </Box>
+          )}
+          {LoginCtx?.LoginModalState == "SignUp" && (
+            <Box>
+              <Typography id="modal-modal-title" variant="h6" component="h2">
+                가입하기 모달
+              </Typography>
+              <PartOfSignUpInput />
+            </Box>
+          )}
         </Box>
       </Modal>
-    </div>
+    </Box>
+  );
+}
+function LoginModal() {
+  return (
+    <LoginStateContextProvider>
+      <LoginModalContainer />
+    </LoginStateContextProvider>
   );
 }
 
