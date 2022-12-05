@@ -9,11 +9,12 @@ import FormGroup from "@mui/material/FormGroup";
 import MenuItem from "@mui/material/MenuItem";
 import Menu from "@mui/material/Menu";
 import LoginModal from "../modal/LoginModal";
-
+import MailOutlineIcon from '@mui/icons-material/MailOutline';
+import { useNavigate } from "react-router-dom";
 function Headers() {
   const [auth, setAuth] = React.useState(true);
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
-
+  const nav= useNavigate()
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setAuth(event.target.checked);
   };
@@ -46,6 +47,20 @@ function Headers() {
               height={"40px"}
             />
           </Typography>
+
+          {
+
+              <IconButton
+                size="large"
+                aria-label="account of current user"
+                aria-controls="menu-appbar"
+                aria-haspopup="true"
+                onClick={() => {nav("message") }}
+                color="inherit"
+              >
+                <MailOutlineIcon />
+              </IconButton>
+          }
           {auth && (
             <div>
               <IconButton
