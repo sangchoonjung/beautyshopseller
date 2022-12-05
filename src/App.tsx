@@ -1,20 +1,30 @@
-import React from "react";
+import React, { createContext } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import BaseLayer from "./components/layout/BaseLayer";
 import Main from "./components/mainhome/main";
+import MessagePage from "./components/messagePage";
 
-// import "./App.css";
-
+import "./App.css";
+export const Context = createContext(null);
 function App() {
+
+
+
+
+
   return (
     <div className="App">
-      <BrowserRouter>
-        <BaseLayer>
-          <Routes>
-            <Route path="/" element={<Main />} />
-          </Routes>
-        </BaseLayer>
-      </BrowserRouter>
+      <Context.Provider value={null} >
+        <BrowserRouter>
+          <BaseLayer>
+            <Routes>
+              <Route path="/" element={<Main />} />
+              <Route path="/message" element={<MessagePage />} />
+            </Routes>
+          </BaseLayer>
+        </BrowserRouter>
+      </Context.Provider>
+
     </div>
   );
 }
