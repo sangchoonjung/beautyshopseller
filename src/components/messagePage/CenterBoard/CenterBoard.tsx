@@ -3,7 +3,7 @@ import MessageBody from "./MessageBody";
 import { MessageTitle } from "./MessageTitle";
 
 
-export default function RightBoard() {
+export default function CenterBoard() {
 
 
     return (<>
