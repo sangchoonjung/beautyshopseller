@@ -2,6 +2,7 @@ import { Box, Button, TextField, Typography } from "@mui/material";
 import { experimentalStyled as styled } from "@mui/material/styles";
 import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Grid";
+import { minHeight } from "@mui/system";
 
 function MainBodyBox() {
   const Item = styled(Paper)(({ theme }) => ({
@@ -39,15 +40,15 @@ function MainBodyBox() {
           />
         </Box>
       </Box>
-      <Box sx={{ flexGrow: 1, width: "700px" }}>
+      <Box sx={{ flexGrow: 1, width: "1000px", pt: 2 }}>
         <Grid
           container
           spacing={{ xs: 2, md: 3 }}
           columns={{ xs: 6, sm: 6, md: 12 }}
         >
           {["page1", "page2", "page3", "page4"].map((one, index) => (
-            <Grid item xs={2} sm={4} md={3} key={index}>
-              <Item>{one}</Item>
+            <Grid item xs={6} sm={4} md={3} key={index}>
+              <Item>{one}aaaaaaaaaaaaaaaaaassssssssssssssssssssss</Item>
             </Grid>
           ))}
         </Grid>

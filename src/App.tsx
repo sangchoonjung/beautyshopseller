@@ -5,26 +5,22 @@ import Main from "./components/mainhome/main";
 import MessagePage from "./components/messagePage";
 
 import "./App.css";
+import Inventory from "./components/inventory/Inventory";
 export const Context = createContext(null);
 function App() {
-
-
-
-
-
   return (
     <div className="App">
-      <Context.Provider value={null} >
+      <Context.Provider value={null}>
         <BrowserRouter>
           <BaseLayer>
             <Routes>
               <Route path="/" element={<Main />} />
               <Route path="/message" element={<MessagePage />} />
+              <Route path="/inventory" element={<Inventory />} />
             </Routes>
           </BaseLayer>
         </BrowserRouter>
       </Context.Provider>
-
     </div>
   );
 }
