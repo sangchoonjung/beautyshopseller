@@ -6,12 +6,13 @@ import AccountCircle from "@mui/icons-material/AccountCircle";
 import MenuItem from "@mui/material/MenuItem";
 import Menu from "@mui/material/Menu";
 import LoginModal from "../modal/LoginModal";
-import MailOutlineIcon from '@mui/icons-material/MailOutline';
+import MailOutlineIcon from "@mui/icons-material/MailOutline";
 import { useNavigate } from "react-router-dom";
+import LeftDrawer from "../modal/LeftDrawer";
 function Headers() {
   const [auth, setAuth] = React.useState(true);
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
-  const navi= useNavigate()
+  const navi = useNavigate();
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setAuth(event.target.checked);
@@ -36,7 +37,8 @@ function Headers() {
             aria-label="menu"
             sx={{ mr: 2 }}
           >
-            <MenuIcon />
+            {/* <MenuIcon /> */}
+            <LeftDrawer />
           </IconButton>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             <img
@@ -48,17 +50,18 @@ function Headers() {
           </Typography>
 
           {
-
-              <IconButton
-                size="large"
-                aria-label="account of current user"
-                aria-controls="menu-appbar"
-                aria-haspopup="true"
-                onClick={() => {navi("message") }}
-                color="inherit"
-              >
-                <MailOutlineIcon />
-              </IconButton>
+            <IconButton
+              size="large"
+              aria-label="account of current user"
+              aria-controls="menu-appbar"
+              aria-haspopup="true"
+              onClick={() => {
+                navi("message");
+              }}
+              color="inherit"
+            >
+              <MailOutlineIcon />
+            </IconButton>
           }
           {auth && (
             <div>

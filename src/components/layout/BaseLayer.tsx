@@ -7,6 +7,7 @@ function BaseLayer({ children }: { children?: React.ReactElement }) {
     <div>
       <Headers />
       {children}
+      <div style={{ position: "absolute", bottom: 0 }}>바닥글</div>
     </div>
   );
 }

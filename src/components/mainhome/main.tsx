@@ -1,13 +1,15 @@
-import Inventory from "../inventory/Inventory";
+
+import { Box } from "@mui/material";
+import MainBodyBox from "./MainBodyBox";
+import MainHeaderBox from "./MainHeaderBox";
 
 function Main() {
-
-
-  // return <>메인</>;
-  return <>
-    <Inventory />
-
-  </>
+  return (
+    <Box>
+      <MainHeaderBox />
+      <MainBodyBox />
+    </Box>
+  );
 
 
 }
