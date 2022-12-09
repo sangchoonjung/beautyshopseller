@@ -18,7 +18,6 @@ interface EnhancedTableProps {
     orderBy: string;
     rowCount: number;
 }
-
 interface HeadCell {
     disablePadding: boolean;
     id: keyof InventoryItemData;
@@ -84,7 +83,10 @@ export function TableHeaders(props: EnhancedTableProps) {
         };
 
     return (
-        <TableHead>
+        <TableHead sx={{
+            background: "linear-gradient(0deg, rgba(190,190,190,0.8) 0%, rgba(204,204,204,1) 30%, rgba(239,239,239,1) 100%)",
+            border: '1px solid #bbbbbb', borderCollapse: "collapse", borderTop: "1px solid #ffffff"
+        }}>
             <TableRow>
                 <TableCell padding="checkbox">
                     <Checkbox

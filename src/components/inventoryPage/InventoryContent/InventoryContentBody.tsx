@@ -86,7 +86,6 @@ export default function InventoryContentBody({ rows }: { rows: InventoryItemData
     const handleClick = (event: React.MouseEvent<unknown>, name: string) => {
         const selectedIndex = selected.indexOf(name);
         let newSelected: readonly string[] = [];
-
         if (selectedIndex === -1) {
             newSelected = newSelected.concat(selected, name);
         } else if (selectedIndex === 0) {
@@ -99,7 +98,6 @@ export default function InventoryContentBody({ rows }: { rows: InventoryItemData
                 selected.slice(selectedIndex + 1),
             );
         }
-
         setSelected(newSelected);
     };
 
@@ -172,7 +170,7 @@ export default function InventoryContentBody({ rows }: { rows: InventoryItemData
                                             >
                                                 {row.Status}
                                             </TableCell>
-                                            <TableCell align="right">{row.Image}</TableCell>
+                                            <TableCell align="right">{row.Image}<img src={'https://images.unsplash.com/photo-1525097487452-6278ff080c31?w=248&fit=crop&auto=format'} /> </TableCell>
                                             <TableCell align="right">{row.SKU}</TableCell>
                                             <TableCell align="right">{row.Name}</TableCell>
                                             <TableCell align="right">{row.Created}</TableCell>
@@ -188,7 +186,7 @@ export default function InventoryContentBody({ rows }: { rows: InventoryItemData
                                         height: (53) * emptyRows,
                                     }}
                                 >
-                                    <TableCell colSpan={6} />
+                                    <TableCell colSpan={9} />
                                 </TableRow>
                             )}
                         </TableBody>

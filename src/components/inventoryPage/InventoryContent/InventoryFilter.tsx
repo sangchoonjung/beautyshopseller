@@ -6,13 +6,13 @@ import FormControl from '@mui/material/FormControl';
 const FilterBoxStyle: SxProps = {
     display: "flex", alignItems: "center",
     backgroundColor: "#efefef", px: 2, py: 1,
-    border: '1px solid #bbbbbb'
+    border: '1px solid #bbbbbb', borderCollapse: "collapse"
 }
 
-const StatusList = [
+export const StatusList = [
     "All", "Active", "Inactive", "Incomplete", "Listing Removed", "Search Suppressed"
 ]
-export function InventoryFilter() {
+export function InventoryFilter({ setFilter }: { setFilter: (filter: string) => void }) {
 
     return (
         <Box sx={FilterBoxStyle}>
@@ -25,7 +25,7 @@ export function InventoryFilter() {
                         name="radio-buttons-group" sx={{ display: 'flex', flexDirection: "row" }}
                     >
                         {StatusList.map(stat => {
-                            return <FormControlLabel key={stat} value={stat} control={<Radio />} label={<span style={{ fontSize: '14px', wordSpacing: -2 }}> {stat}</span>} />
+                            return <FormControlLabel onClick={() => { setFilter(stat) }} key={stat} value={stat} control={<Radio />} label={<span style={{ fontSize: '14px', wordSpacing: -2 }}> {stat}</span>} />
                         })}
                     </RadioGroup>
                 </FormControl>
