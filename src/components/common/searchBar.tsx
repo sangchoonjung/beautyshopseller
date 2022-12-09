@@ -15,7 +15,7 @@ export function SearchBar({
       <TextField
         size="small"
         sx={{
-          minWidth: "190px",
+          maxWidth: "300px",
           flex: 1,
           "& .MuiInputBase-input": {
             overflow: "hidden",

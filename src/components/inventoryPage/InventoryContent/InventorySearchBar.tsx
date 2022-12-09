@@ -1,5 +1,7 @@
 import { Box, SxProps } from "@mui/system";
-import { SearchBar } from "../../common/searchBar";
+import { useNavigate } from "react-router";
+import { Button } from "@mui/material";
+import { SearchBar } from "../../common/SearchBar";
 const inventoryBtnStyle: SxProps = {
     backgroundColor: "black",
     color: 'white',
@@ -11,10 +13,24 @@ const inventoryBtnStyle: SxProps = {
     fontSize: "13px"
 }
 export function InventorySearchBar() {
+    const navi = useNavigate();
 
     return (
-        <Box sx={{ display: 'flex', alignItems: "center", width: '200px' }}>
+        <Box sx={{ display: 'flex', alignItems: "center", position: "relative" }}>
             <SearchBar btnStyle={inventoryBtnStyle} placeholder="Search SKU, Title, ISBN" />
+
+            <Button
+                onClick={() => navi("addItem")}
+                sx={{
+                    fontSize: "10px", ...inventoryBtnStyle,
+                    minWidth: '100px',
+                    position: "absolute", right: -15,
+                    backgroundColor: "blue", ":hover": { backgroundColor: "rgba(0,0,255, 0.65)" }
+                }}
+            >
+                Add Item
+            </Button>
+
         </Box>
     )
 }

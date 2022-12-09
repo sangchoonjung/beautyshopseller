@@ -1,4 +1,5 @@
 import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
 import { datas } from "./InventoryContent/ContentParts/InventoryDummyData";
 import InventoryContent from "./InventoryContent/InventoryContentBody";
 import { InventoryFilter, StatusList } from "./InventoryContent/InventoryFilter";
@@ -20,7 +21,7 @@ export default function InventoryPage() {
         }
     }, [filter])
     return (
-        <Box sx={{ flex: 1, display: 'flex', height: '90vh', overflowY: "scroll" }}>
+        <Box sx={{ flex: 1, display: 'flex', height: '90vh', overflowY: "scroll", justifyContent: "center" }}>
             <Box sx={{ m: 2 }}>
                 <InventoryTitle />
                 <InventorySearchBar />
