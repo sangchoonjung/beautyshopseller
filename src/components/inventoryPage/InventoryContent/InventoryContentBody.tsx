@@ -11,7 +11,6 @@ import Checkbox from '@mui/material/Checkbox';
 import { TableHeaders } from './ContentParts/TableHeaers';
 import { InventoryItemData } from './ContentParts/InventoryDummyData';
 
-
 function descendingComparator<T>(a: T, b: T, orderBy: keyof T) {
     if (b[orderBy] < a[orderBy]) {
         return -1;
@@ -52,17 +51,12 @@ function stableSort<T>(array: readonly T[], comparator: (a: T, b: T) => number) 
 
 
 
-
-
-
 export default function InventoryContentBody({ rows }: { rows: InventoryItemData[] }) {
     const [order, setOrder] = React.useState<Order>('asc');
     const [orderBy, setOrderBy] = React.useState<keyof InventoryItemData>('Created');
     const [selected, setSelected] = React.useState<readonly string[]>([]);
     const [page, setPage] = React.useState(0);
     const [rowsPerPage, setRowsPerPage] = React.useState(5);
-
-
 
 
     const handleRequestSort = (

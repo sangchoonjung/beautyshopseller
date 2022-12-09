@@ -9,7 +9,7 @@ import LoginModal from "../modal/LoginModal";
 import MailOutlineIcon from "@mui/icons-material/MailOutline";
 import { useNavigate } from "react-router-dom";
 import LeftDrawer from "../modal/LeftDrawer";
-import { SearchBar } from "../common/searchBar";
+import { SearchBar } from "../common/SearchBar";
 import MainSearchBar from "../common/MainSearchBar";
 function Headers() {
   const [auth, setAuth] = React.useState(true);

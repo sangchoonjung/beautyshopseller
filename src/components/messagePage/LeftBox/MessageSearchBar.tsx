@@ -1,5 +1,5 @@
 import { Button, SxProps, Box, TextField } from "@mui/material";
-import { SearchBar } from "../../common/searchBar";
+import { SearchBar } from "../../common/SearchBar";
 const MessageSearchBarStyle: SxProps = { display: 'flex', height: '50px', alignItems: "center", mx: '3px' }
 export function MessageSearchBar() {
 
@@ -9,7 +9,6 @@ export function MessageSearchBar() {
 
         <Box sx={MessageSearchBarStyle}>
             <SearchBar placeholder="Enter Order ID or Email Address" />
-
         </Box>
     )
 }

@@ -1,5 +1,3 @@
-
-
 export interface InventoryItemData {
     Status: string;
     Image: string;
@@ -10,7 +8,6 @@ export interface InventoryItemData {
     FeePerSold: number;
     Price: number;
 }
-
 
 function createData(
     Status: string,
