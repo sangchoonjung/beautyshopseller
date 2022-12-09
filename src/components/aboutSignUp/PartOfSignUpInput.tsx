@@ -1,9 +1,9 @@
 import { Box, Button, TextField, Typography } from "@mui/material";
-import { useState, useContext } from "react";
+import React, { useState, useContext } from "react";
 import { LoginStateContext } from "../../context/LoginStateContext";
 
 export type LoginAndSignUpInputValueType = {
-  id: string;
+  email: string;
   password: string;
   passwordConfirm?: string;
   phoneNumber?: string;
@@ -12,7 +12,7 @@ export type LoginAndSignUpInputValueType = {
 function PartOfSignUpInput() {
   const LoginCtx = useContext(LoginStateContext);
   const [inputValue, setInputValue] = useState<LoginAndSignUpInputValueType>({
-    id: "",
+    email: "",
     password: "",
     passwordConfirm: "",
     phoneNumber: "",
@@ -22,7 +22,23 @@ function PartOfSignUpInput() {
 
   const signUpSubmitHandler: React.FormEventHandler = (evt) => {
     evt.preventDefault();
+
     LoginCtx?.setLoginModalState("Login");
+  };
+
+  const checkEmail: React.MouseEventHandler = async (evt) => {
+    evt.preventDefault();
+    const response = await fetch("http://localhost:8080/api/account/idCheck", {
+      method: "POST",
+      body: JSON.stringify({
+        email: inputValue.email,
+      }),
+      headers: {
+        "Content-type": "application/json",
+      },
+    });
+    const data = await response.json();
+    console.log(data);
   };
 
   return (
@@ -39,10 +55,11 @@ function PartOfSignUpInput() {
           type={"email"}
           onChange={(evt) =>
             setInputValue((current) => {
-              return { ...current, id: evt.target.value };
+              return { ...current, email: evt.target.value };
             })
           }
         />
+        <Button onClick={checkEmail}>중복확인</Button>
         <TextField
           id="filled-basic"
           label="PassWord"
