@@ -11,7 +11,7 @@ import ListItemText from "@mui/material/ListItemText";
 import InboxIcon from "@mui/icons-material/MoveToInbox";
 import MailIcon from "@mui/icons-material/Mail";
 import { AiOutlineMenu } from "react-icons/ai";
-import IconButton from "@mui/material/IconButton";
+import { useNavigate } from "react-router-dom";
 
 export default function LeftDrawer() {
   const [state, setState] = React.useState(false);
@@ -19,13 +19,25 @@ export default function LeftDrawer() {
   const toggleDrawer = (open: boolean) => {
     setState(open);
   };
+  const navi = useNavigate();
 
-  const list = (anchor: string) => (
+  const moveToPage = (item: String) => {
+    switch (item) {
+      case "Inventory":
+        navi("inventory");
+        break;
+      case "Message":
+        navi("message");
+        break;
+    }
+  };
+  // console.log(navi);
+  const list = () => (
     <Box role="presentation" onClick={() => toggleDrawer(false)}>
       <List>
-        {["Inbox", "Starred", "Send email", "Drafts"].map((text, index) => (
+        {["Inventory", "Message", "Send email", "Drafts"].map((text, index) => (
           <ListItem key={text} disablePadding>
-            <ListItemButton>
+            <ListItemButton onClick={() => moveToPage(text)}>
               <ListItemIcon>
                 {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
               </ListItemIcon>
@@ -54,7 +66,7 @@ export default function LeftDrawer() {
       </Button>
 
       <Drawer anchor={"left"} open={state} onClose={() => toggleDrawer(false)}>
-        {list("left")}
+        {list()}
       </Drawer>
     </Box>
   );

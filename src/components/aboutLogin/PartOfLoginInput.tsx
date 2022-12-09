@@ -8,15 +8,26 @@ function PartOfLoginInput() {
     password: "",
   });
 
-  const onLoginHandler: React.FormEventHandler = (evt) => {
+  const onLoginHandler: React.FormEventHandler = async (evt) => {
     evt.preventDefault();
+    const response = await fetch("http://localhost:3306", {
+      method: "POST",
+      body: JSON.stringify({
+        id: inputValue.id,
+        password: inputValue.password,
+      }),
+      headers: {
+        "Content-type": "application/json",
+      },
+    });
+    const data = await response.json();
   };
   console.log(inputValue);
   return (
     <Box>
       <form
         style={{ display: "flex", flexDirection: "column" }}
-        onSubmit={onLoginHandler}
+        // onSubmit={onLoginHandler}
       >
         <TextField
           id="filled-basic"
