@@ -4,7 +4,7 @@ import { LoginAndSignUpInputValueType } from "../aboutSignUp/PartOfSignUpInput";
 
 function PartOfLoginInput() {
   const [inputValue, setInputValue] = useState<LoginAndSignUpInputValueType>({
-    id: "",
+    email: "",
     password: "",
   });
 
@@ -13,7 +13,7 @@ function PartOfLoginInput() {
     const response = await fetch("http://localhost:3306", {
       method: "POST",
       body: JSON.stringify({
-        id: inputValue.id,
+        id: inputValue.email,
         password: inputValue.password,
       }),
       headers: {
