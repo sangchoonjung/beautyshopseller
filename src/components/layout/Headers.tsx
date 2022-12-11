@@ -9,16 +9,12 @@ import LoginModal from "../modal/LoginModal";
 import MailOutlineIcon from "@mui/icons-material/MailOutline";
 import { useNavigate } from "react-router-dom";
 import LeftDrawer from "../modal/LeftDrawer";
-import { SearchBar } from "../common/SearchBar";
+
 import MainSearchBar from "../common/MainSearchBar";
 function Headers() {
-  const [auth, setAuth] = React.useState(true);
-  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+  const auth = localStorage.getItem("token");
   const navi = useNavigate();
-
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setAuth(event.target.checked);
-  };
+  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
 
   const handleMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
@@ -26,6 +22,10 @@ function Headers() {
 
   const handleClose = () => {
     setAnchorEl(null);
+  };
+  const logoutHandle = () => {
+    localStorage.removeItem("token");
+    navi("/login");
   };
 
   return (
@@ -107,11 +107,12 @@ function Headers() {
                   open={Boolean(anchorEl)}
                   onClose={handleClose}
                 >
-                  <MenuItem onClick={handleClose}>
+                  {/* <MenuItem onClick={handleClose}>
                     <LoginModal />
-                  </MenuItem>
+                  </MenuItem> */}
                   <MenuItem onClick={handleClose}>Profile</MenuItem>
                   <MenuItem onClick={handleClose}>My account</MenuItem>
+                  <MenuItem onClick={logoutHandle}>Log out</MenuItem>
                 </Menu>
               </div>
             )}

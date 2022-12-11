@@ -6,6 +6,8 @@ import MessagePage from "./components/messagePage";
 import "./App.css";
 import InventoryPage from "./components/inventoryPage/InventoryPage";
 import AddItemPage from "./components/addItemPage/AddItemPage";
+import LoginContainer from "./components/loginPage/LoginContainer";
+import PrivateRoute from "./lib/privateRoute";
 
 export const Context = createContext(null);
 function App() {
@@ -13,16 +15,44 @@ function App() {
     <div className="App">
       <Context.Provider value={null}>
         <BrowserRouter>
-          <BaseLayer>
-            <Routes>
-              <Route path="/" element={<Main />} />
-              <Route path="/message" element={<MessagePage />} />
+          <Routes>
+            <Route element={<BaseLayer />}>
+              <Route
+                path="/"
+                element={
+                  <PrivateRoute>
+                    <Main />
+                  </PrivateRoute>
+                }
+              />
+              <Route
+                path="/message"
+                element={
+                  <PrivateRoute>
+                    <MessagePage />
+                  </PrivateRoute>
+                }
+              />
+              <Route
+                path="/inventory"
+                element={
+                  <PrivateRoute>
+                    <InventoryPage />
+                  </PrivateRoute>
+                }
+              />
+              <Route
+                path="/inventory/addItem"
+                element={
+                  <PrivateRoute>
+                    <AddItemPage />
+                  </PrivateRoute>
+                }
+              />
+            </Route>
 
-              <Route path="/inventory" element={<InventoryPage />} />
-              <Route path="/inventory/addItem" element={<AddItemPage />} />
-
-            </Routes>
-          </BaseLayer>
+            <Route path="/login" element={<LoginContainer />} />
+          </Routes>
         </BrowserRouter>
       </Context.Provider>
     </div>
