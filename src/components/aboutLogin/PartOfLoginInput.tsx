@@ -1,5 +1,6 @@
 import { Box, Button, TextField } from "@mui/material";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { LoginAndSignUpInputValueType } from "../aboutSignUp/PartOfSignUpInput";
 
 function PartOfLoginInput() {
@@ -7,6 +8,7 @@ function PartOfLoginInput() {
     email: "",
     password: "",
   });
+  const navi = useNavigate();
 
   console.log(inputValue);
   const onLoginHandler: React.FormEventHandler = async (evt) => {
@@ -22,7 +24,9 @@ function PartOfLoginInput() {
       },
     });
     const data = await response.json();
-    console.log(data);
+    console.log(data.token, "확인");
+    localStorage.setItem("token", data.token);
+    navi("/");
   };
   return (
     <Box>
