@@ -2,35 +2,59 @@ import { Box } from "@mui/material";
 import { SelectChangeEvent } from "@mui/material/Select";
 import { SxProps } from "@mui/material/styles";
 import { useState } from "react";
-import { SelectBar } from "../../common/SelectBar";
-import { categoryList } from "./StepsDescription";
+import { categoryList, StatusList } from "./StepsDescription";
+import Input from '@mui/material/Input';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import TextField from '@mui/material/TextField';
+import InputAdornment from '@mui/material/InputAdornment';
 
+import FormControl from '@mui/material/FormControl';
+import { ItemState } from "../AddItemPage";
 const StepOneBoxStyle: SxProps = {
 
     display: 'flex',
     flexDirection: 'column'
 }
 
-export function StepOne() {
-    const [select, setSelect] = useState<string>("cleansing-Foam")
-    const handleChange = (event: SelectChangeEvent) => {
-        setSelect(event.target.value as string);
-    };
+/*
+
+Active
+Inactive
+Incomplete
+Listing Removed
+Search Suppressed
+*/
+export function StepThree({ input, handleChange }: { input: ItemState, handleChange: Function }) {
+    const [select, setSelect] = useState<string>("Active")
+
     return <>
 
         <Box sx={StepOneBoxStyle} >
-            이름을 써라
             <Box>
-
+                available
+                status
             </Box>
-            카테고리를 골라라
             <Box>
-                <SelectBar handleChange={handleChange} selectedValue={select} SelectOption={categoryList} />
+                <FormControl fullWidth sx={{ m: 1, px: 0.5 }} variant="standard">
+                    {/* <InputLabel htmlFor="standard-adornment-amount">Status</InputLabel> */}
+                    <TextField
+                        sx={{ maxWidth: "500px", px: 1 }}
+                        id="outlined-select-currency"
+                        select
+                        label="Status"
+                        fullWidth
+                        value={input.status}
+                        onChange={handleChange('status')}
+                    >
+                        {StatusList.map((option) => (
+                            <MenuItem key={option} value={option}>
+                                {option}
+                            </MenuItem>
+                        ))}
+                    </TextField>
+                </FormControl>
             </Box>
-            가격을 입력해라
-            수량을 입력해라
-
-
         </Box>
 
 

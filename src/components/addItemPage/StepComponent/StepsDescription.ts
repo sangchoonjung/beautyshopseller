@@ -1,14 +1,14 @@
 export const steps = [
     {
-        label: 'Step 1. 상품 기본 정보를 입력해 주세요',
+        label: 'Step 1. 상품 기본 정보를 입력해 주세요.',
         description: `        `,
     },
     {
-        label: '상품 세부 정보를 입력해 주세요',
+        label: 'Step 2. 상품 세부 정보를 입력해 주세요.',
         description: ``,
     },
     {
-        label: '등록 정보를 입력해 주세요.',
+        label: 'Step 3. 등록 정보를 입력해 주세요.',
         description: ``,
     },
 ];
@@ -20,6 +20,13 @@ export const categoryList = [
     'skin/lotion',
 ];
 
+export const StatusList = [
+    'Active',
+    'Inactive',
+    'Incomplete',
+    'Listing Removed',
+    'Search Suppressed',
+];
 /*
   SellerId: string; //판매자 아이디 유니크
     로그인정보로 입력

@@ -1,40 +1,23 @@
-import { Box } from "@mui/material";
-import { SelectChangeEvent } from "@mui/material/Select";
-import { SxProps } from "@mui/material/styles";
-import { useState } from "react";
-import { SelectBar } from "../../common/SelectBar";
-import { categoryList } from "./StepsDescription";
+import { AddItemContext } from "../../../context/addItemContext";
+import { StepTwoInput } from "./StepTwo/StepTwoInput";
+import * as React from 'react';
+import { StepTwoImage } from "./StepTwo/StepTwoImage";
+import { ImageItem } from "./StepTwo/ImageItem";
 
-const StepOneBoxStyle: SxProps = {
+export function StepTwo({ clickHandle }: { clickHandle: () => void }) {
 
-    display: 'flex',
-    flexDirection: 'column'
-}
+    const { input, handleInputChange, dragAddHandle, files } = React.useContext(AddItemContext);
 
-export function StepOne() {
-    const [select, setSelect] = useState<string>("cleansing-Foam")
-    const handleChange = (event: SelectChangeEvent) => {
-        setSelect(event.target.value as string);
-    };
-    return <>
+    return (
+        <>
+            <StepTwoInput input={input!} handleChange={handleInputChange!} />
+            {
+                // 여러개 할 거면 맵 돌리기
+                files!.length > 0 ?
+                    <ImageItem file={files![0]} /> :
+                    <StepTwoImage dropHandle={dragAddHandle!} clickHandle={clickHandle} />
+            }
 
-        <Box sx={StepOneBoxStyle} >
-            이름을 써라
-            <Box>
-
-            </Box>
-            카테고리를 골라라
-            <Box>
-                <SelectBar handleChange={handleChange} selectedValue={select} SelectOption={categoryList} />
-            </Box>
-            가격을 입력해라
-            수량을 입력해라
-
-
-        </Box>
-
-
-
-    </>
-
+        </>
+    )
 }
