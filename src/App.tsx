@@ -8,7 +8,11 @@ import InventoryPage from "./components/inventoryPage/InventoryPage";
 import AddItemPage from "./components/addItemPage/AddItemPage";
 import LoginContainer from "./components/loginPage/LoginContainer";
 import PrivateRoute from "./lib/privateRoute";
+
+import ModifyProfile from "./components/profilePage/ModifyProfile";
+
 import { AddItemProvider } from "./context/addItemContext";
+
 
 export const Context = createContext(null);
 function App() {
@@ -49,6 +53,14 @@ function App() {
                     <AddItemProvider >
                       <AddItemPage />
                     </AddItemProvider>
+                  </PrivateRoute>
+                }
+              />
+              <Route
+                path="/modifyProfile"
+                element={
+                  <PrivateRoute>
+                    <ModifyProfile />
                   </PrivateRoute>
                 }
               />
