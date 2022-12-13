@@ -27,6 +27,9 @@ function Headers() {
     localStorage.removeItem("token");
     navi("/login");
   };
+  const modifyProfileHandle = () => {
+    navi("/modifyProfile");
+  };
 
   return (
     <Box sx={{ flexGrow: 1 }}>
@@ -110,7 +113,7 @@ function Headers() {
                   {/* <MenuItem onClick={handleClose}>
                     <LoginModal />
                   </MenuItem> */}
-                  <MenuItem onClick={handleClose}>Profile</MenuItem>
+                  <MenuItem onClick={modifyProfileHandle}>Profile</MenuItem>
                   <MenuItem onClick={handleClose}>My account</MenuItem>
                   <MenuItem onClick={logoutHandle}>Log out</MenuItem>
                 </Menu>
