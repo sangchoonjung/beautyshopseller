@@ -13,6 +13,7 @@ function PartOfLoginInput() {
   console.log(inputValue);
   const onLoginHandler: React.FormEventHandler = async (evt) => {
     evt.preventDefault();
+    if (inputValue.email.length === 0 || inputValue.password.length === 0) return;
     const response = await fetch("http://localhost:8080/api/account/login", {
       method: "POST",
       body: JSON.stringify({
