@@ -9,9 +9,28 @@ import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
 import { steps } from './StepComponent/StepsDescription';
 import { StepOne } from './StepComponent/StepOne';
+import { SxProps } from '@mui/material';
+import { AddItemContext } from '../../context/addItemContext';
+import { StepTwo } from './StepComponent/StepTwo';
+import { StepThree } from './StepComponent/StepThree';
+
+const StepBoxStyle: SxProps = {
+    display: 'flex',
+    flexDirection: 'column',
+    width: '70vw',
+    minWidth: '500px'
+}
+export interface ItemState {
+    name: string, category: string, amount: number, price: number,
+    country: string, description: string, status: string
+}
+
 
 export default function AddItemPage() {
     const [activeStep, setActiveStep] = React.useState(0);
+    const ref = React.useRef<HTMLInputElement>(null!);
+    const ctx = React.useContext(AddItemContext);
+    const { input, handleInputChange, files, fileSelectHandle } = ctx
     const handleNext = () => {
         setActiveStep((prevActiveStep) => prevActiveStep + 1);
     };
@@ -24,11 +43,17 @@ export default function AddItemPage() {
         setActiveStep(0);
     };
 
+
+    const clickHandle = () => {
+        ref.current.click()
+    }
+
     return (
-        <Box sx={{ m: 2, p: 2 }}>
+
+        <Box sx={{ m: 2, p: 2, display: 'flex', flexDirection: "column", alignItems: "center" }}>
             <Stepper activeStep={activeStep} orientation="vertical">
                 {steps.map((step, index) => (
-                    <Step key={step.label}>
+                    <Step key={step.label} sx={StepBoxStyle} >
                         <StepLabel
                             optional={
                                 index === 2 ? (
@@ -36,37 +61,33 @@ export default function AddItemPage() {
                                 ) : null
                             }
                         >
-                            {step.label}
+                            <Typography sx={{ mx: 2 }}>{step.label}</Typography>
                         </StepLabel>
                         <StepContent>
                             {/* <Typography>{step.description}</Typography> */}
-                            <Box sx={{ mb: 2 }}>
+                            <Box sx={{ mb: 2, }}>
                                 <div>
                                     {index === 0 && (
                                         <>
-                                            <StepOne />
+                                            <StepOne input={input!} handleChange={handleInputChange!} />
                                         </>
                                     )}
 
                                     {index === 1 && (
 
-                                        `
-                                        step2
-                                        생산국
-                                        상세설명
-                                        이미지
-                                        `
+                                        <>
+                                            <StepTwo clickHandle={clickHandle} />
+                                        </>
                                     )}
                                     {
                                         index === 2 && (
+                                            <>
+                                                <StepThree input={input!} handleChange={handleInputChange!} />
 
-                                            `
-                                            available
-                                            status
-                                            `
+                                            </>
                                         )
                                     }
-                                    <Box>
+                                    <Box sx={{ p: 2 }}>
                                         <Button
                                             variant="contained"
                                             onClick={handleNext}
@@ -96,6 +117,9 @@ export default function AddItemPage() {
                     </Button>
                 </Paper>
             )}
+            <input onChange={fileSelectHandle} multiple type={"file"} ref={ref} style={{ display: "none" }} accept="image/*" />
+
         </Box>
+
     );
 }
