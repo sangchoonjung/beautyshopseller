@@ -22,7 +22,8 @@ export const AddItemProvider = ({ children }: { children: ReactNode }) => {
         amount: 0,
         country: "",
         description: "",
-        status: "Active"
+        status: "Active",
+        available: "Available"
     })
     const dragAddHandle: React.DragEventHandler = (evt) => {
         evt.preventDefault();
