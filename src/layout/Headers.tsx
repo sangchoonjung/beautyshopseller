@@ -5,12 +5,12 @@ import MenuIcon from "@mui/icons-material/Menu";
 import AccountCircle from "@mui/icons-material/AccountCircle";
 import MenuItem from "@mui/material/MenuItem";
 import Menu from "@mui/material/Menu";
-import LoginModal from "../modal/LoginModal";
+import LoginModal from "../components/modal/LoginModal";
 import MailOutlineIcon from "@mui/icons-material/MailOutline";
 import { useNavigate } from "react-router-dom";
-import LeftDrawer from "../modal/LeftDrawer";
+import LeftDrawer from "../components/modal/LeftDrawer";
 
-import MainSearchBar from "../common/MainSearchBar";
+import MainSearchBar from "../components/common/MainSearchBar";
 function Headers() {
   const auth = localStorage.getItem("token");
   const navi = useNavigate();
@@ -113,8 +113,9 @@ function Headers() {
                   {/* <MenuItem onClick={handleClose}>
                     <LoginModal />
                   </MenuItem> */}
-                  <MenuItem onClick={modifyProfileHandle}>Profile</MenuItem>
-                  <MenuItem onClick={handleClose}>My account</MenuItem>
+                  <MenuItem onClick={modifyProfileHandle}>profile</MenuItem>
+                  <MenuItem onClick={handleClose}>anything</MenuItem>
+                  <MenuItem onClick={handleClose}>anything</MenuItem>
                   <MenuItem onClick={logoutHandle}>Log out</MenuItem>
                 </Menu>
               </div>

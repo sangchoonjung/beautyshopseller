@@ -1,6 +1,6 @@
 const isAdmin = () => {
-    console.log(typeof localStorage.getItem('token'));
-    localStorage.setItem('token', 'tokenWWWWW');
+    console.log(localStorage.getItem('token'), "토큰");
+    // localStorage.setItem('token', 'tokenWWWWW');
     return !!localStorage.getItem('token');
 };
 
