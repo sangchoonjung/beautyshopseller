@@ -32,17 +32,12 @@ export function StepThree({ input, handleChange }: { input: ItemState, handleCha
 
         <Box sx={StepOneBoxStyle} >
             <Box>
-                available
-                status
-            </Box>
-            <Box>
                 <FormControl fullWidth sx={{ m: 1, px: 0.5 }} variant="standard">
-                    {/* <InputLabel htmlFor="standard-adornment-amount">Status</InputLabel> */}
+                    <span style={{ fontWeight: 600 }}>Status :</span>
                     <TextField
                         sx={{ maxWidth: "500px", px: 1 }}
                         id="outlined-select-currency"
                         select
-                        label="Status"
                         fullWidth
                         value={input.status}
                         onChange={handleChange('status')}
@@ -54,6 +49,24 @@ export function StepThree({ input, handleChange }: { input: ItemState, handleCha
                         ))}
                     </TextField>
                 </FormControl>
+                <FormControl fullWidth sx={{ m: 1, px: 0.5 }} variant="standard">
+                    <span style={{ fontWeight: 600 }}>Available :</span>
+                    <TextField
+                        sx={{ maxWidth: "500px", px: 1 }}
+                        id="outlined-select-currency"
+                        select
+                        fullWidth
+                        value={input.available}
+                        onChange={handleChange('available')}
+                    >
+                        {["Available", "Unavailable"].map((option) => (
+                            <MenuItem key={option} value={option}>
+                                {option}
+                            </MenuItem>
+                        ))}
+                    </TextField>
+                </FormControl>
+
             </Box>
         </Box>
 

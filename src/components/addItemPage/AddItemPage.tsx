@@ -22,7 +22,8 @@ const StepBoxStyle: SxProps = {
 }
 export interface ItemState {
     name: string, category: string, amount: number, price: number,
-    country: string, description: string, status: string
+    country: string, description: string, status: string,
+    available: "Available" | "Unavailable"
 }
 
 
@@ -50,7 +51,7 @@ export default function AddItemPage() {
 
     return (
 
-        <Box sx={{ m: 2, p: 2, display: 'flex', flexDirection: "column", alignItems: "center" }}>
+        <Box sx={{ m: 2, p: 2, display: 'flex', flexDirection: "column", alignItems: "center", }}>
             <Stepper activeStep={activeStep} orientation="vertical">
                 {steps.map((step, index) => (
                     <Step key={step.label} sx={StepBoxStyle} >
@@ -67,23 +68,24 @@ export default function AddItemPage() {
                             {/* <Typography>{step.description}</Typography> */}
                             <Box sx={{ mb: 2, }}>
                                 <div>
-                                    {index === 0 && (
-                                        <>
-                                            <StepOne input={input!} handleChange={handleInputChange!} />
-                                        </>
-                                    )}
-
-                                    {index === 1 && (
-
-                                        <>
-                                            <StepTwo clickHandle={clickHandle} />
-                                        </>
-                                    )}
+                                    {
+                                        index === 0 && (
+                                            <>
+                                                <StepOne input={input!} handleChange={handleInputChange!} />
+                                            </>
+                                        )
+                                    }
+                                    {
+                                        index === 1 && (
+                                            <>
+                                                <StepTwo clickHandle={clickHandle} />
+                                            </>
+                                        )
+                                    }
                                     {
                                         index === 2 && (
                                             <>
                                                 <StepThree input={input!} handleChange={handleInputChange!} />
-
                                             </>
                                         )
                                     }
@@ -118,7 +120,6 @@ export default function AddItemPage() {
                 </Paper>
             )}
             <input onChange={fileSelectHandle} multiple type={"file"} ref={ref} style={{ display: "none" }} accept="image/*" />
-
         </Box>
 
     );
