@@ -28,7 +28,7 @@ function PartOfSignUpInput() {
     evt.preventDefault();
     if (inputValue.password === inputValue.passwordConfirm) {
       const response = await fetch(
-        "http://localhost:8080/api/account/register",
+        "http://localhost:8080/api/account/SellerRegister",
         {
           method: "POST",
           body: JSON.stringify({

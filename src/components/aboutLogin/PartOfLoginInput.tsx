@@ -13,21 +13,26 @@ function PartOfLoginInput() {
   console.log(inputValue);
   const onLoginHandler: React.FormEventHandler = async (evt) => {
     evt.preventDefault();
-    if (inputValue.email.length === 0 || inputValue.password.length === 0) return;
-    const response = await fetch("http://localhost:8080/api/account/login", {
-      method: "POST",
-      body: JSON.stringify({
-        email: inputValue.email,
-        passWord: inputValue.password,
-      }),
-      headers: {
-        "Content-type": "application/json",
-      },
-    });
+    if (inputValue.email.length === 0 || inputValue.password.length === 0)
+      return;
+    const response = await fetch(
+      "http://localhost:8080/api/account/SellerLogin",
+      {
+        method: "POST",
+        body: JSON.stringify(inputValue),
+        headers: {
+          "Content-type": "application/json",
+        },
+      }
+    );
     const data = await response.json();
-    console.log(data.token, "확인");
-    localStorage.setItem("token", data.token);
-    navi("/");
+    console.log(data.token, "토큰");
+    if (data.result) {
+      localStorage.setItem("token", data.token);
+      navi("/");
+    } else {
+      alert("아이디 및 비번을 다시 확인해주세요");
+    }
   };
   return (
     <Box>

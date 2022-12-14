@@ -1,18 +1,18 @@
 import React, { createContext } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import BaseLayer from "./components/layout/BaseLayer";
+import BaseLayer from "./layout/BaseLayer";
 import Main from "./components/mainhome/main";
 import MessagePage from "./components/messagePage";
 import "./App.css";
 import InventoryPage from "./components/inventoryPage/InventoryPage";
 import AddItemPage from "./components/addItemPage/AddItemPage";
-import LoginContainer from "./components/loginPage/LoginContainer";
 import PrivateRoute from "./lib/privateRoute";
 
 import ModifyProfile from "./components/profilePage/ModifyProfile";
 
 import { AddItemProvider } from "./context/addItemContext";
-
+import LoginContainer from "./components/loginPage/LoginContainer";
+import RegisterContainer from "./components/loginPage/RegisterContainer";
 
 export const Context = createContext(null);
 function App() {
@@ -50,7 +50,7 @@ function App() {
                 path="/inventory/addItem"
                 element={
                   <PrivateRoute>
-                    <AddItemProvider >
+                    <AddItemProvider>
                       <AddItemPage />
                     </AddItemProvider>
                   </PrivateRoute>
@@ -67,6 +67,7 @@ function App() {
             </Route>
 
             <Route path="/login" element={<LoginContainer />} />
+            <Route path="/register" element={<RegisterContainer />} />
           </Routes>
         </BrowserRouter>
       </Context.Provider>
