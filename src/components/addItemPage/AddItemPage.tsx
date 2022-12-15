@@ -5,7 +5,6 @@ import Step from '@mui/material/Step';
 import StepLabel from '@mui/material/StepLabel';
 import StepContent from '@mui/material/StepContent';
 import Button from '@mui/material/Button';
-import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
 import { steps } from './StepComponent/StepsDescription';
 import { StepOne } from './StepComponent/StepOne';
@@ -13,6 +12,7 @@ import { SxProps } from '@mui/material';
 import { AddItemContext } from '../../context/addItemContext';
 import { StepTwo } from './StepComponent/StepTwo';
 import { StepThree } from './StepComponent/StepThree';
+import { StepEndConfirm } from './StepComponent/StepEndConfirm';
 
 const StepBoxStyle: SxProps = {
     display: 'flex',
@@ -30,8 +30,7 @@ export interface ItemState {
 export default function AddItemPage() {
     const [activeStep, setActiveStep] = React.useState(0);
     const ref = React.useRef<HTMLInputElement>(null!);
-    const ctx = React.useContext(AddItemContext);
-    const { input, handleInputChange, files, fileSelectHandle } = ctx
+    const { input, handleInputChange, fileSelectHandle } = React.useContext(AddItemContext);
     const handleNext = () => {
         setActiveStep((prevActiveStep) => prevActiveStep + 1);
     };
@@ -50,7 +49,6 @@ export default function AddItemPage() {
     }
 
     return (
-
         <Box sx={{ m: 2, p: 2, display: 'flex', flexDirection: "column", alignItems: "center", }}>
             <Stepper activeStep={activeStep} orientation="vertical">
                 {steps.map((step, index) => (
@@ -65,7 +63,6 @@ export default function AddItemPage() {
                             <Typography sx={{ mx: 2 }}>{step.label}</Typography>
                         </StepLabel>
                         <StepContent>
-                            {/* <Typography>{step.description}</Typography> */}
                             <Box sx={{ mb: 2, }}>
                                 <div>
                                     {
@@ -95,7 +92,7 @@ export default function AddItemPage() {
                                             onClick={handleNext}
                                             sx={{ mt: 1, mr: 1 }}
                                         >
-                                            {index === steps.length - 1 ? 'Finish' : 'Continue'}
+                                            {index === steps.length - 1 ? '완료' : 'Continue'}
                                         </Button>
                                         <Button
                                             disabled={index === 0}
@@ -112,14 +109,12 @@ export default function AddItemPage() {
                 ))}
             </Stepper>
             {activeStep === steps.length && (
-                <Paper square elevation={0} sx={{ p: 3 }}>
-                    <Typography>All steps completed - you&apos;re finished</Typography>
-                    <Button onClick={handleReset} sx={{ mt: 1, mr: 1 }}>
-                        Reset
-                    </Button>
-                </Paper>
+                <Box sx={StepBoxStyle}>
+                    <StepEndConfirm handleReset={handleReset} />
+                </Box>
+
             )}
-            <input onChange={fileSelectHandle} multiple type={"file"} ref={ref} style={{ display: "none" }} accept="image/*" />
+            <input onChange={fileSelectHandle!()} multiple type={"file"} ref={ref} style={{ display: "none" }} accept="image/*" />
         </Box>
 
     );
