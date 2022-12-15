@@ -27,7 +27,7 @@ export function StepTwoInput({ input, handleChange }: { input: ItemState, handle
                     variant="outlined"
                     multiline fullWidth
                     rows={3}
-                    defaultValue="내용을 입력해주세요."
+                    placeholder="내용을 입력해주세요."
                     onChange={handleChange("description")}
                 />
             </Box>

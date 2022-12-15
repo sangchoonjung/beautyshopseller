@@ -13,7 +13,6 @@ export default function InventoryPage() {
     const [rows, setRows] = React.useState(datas)
     const [filter, setFilter] = React.useState<string>("All")
     React.useEffect(() => {
-        console.log(filter)
         if (filter !== "All") {
             setRows(datas.filter(i => i.Status === filter))
         } else {
@@ -21,7 +20,7 @@ export default function InventoryPage() {
         }
     }, [filter])
     return (
-        <Box sx={{ flex: 1, display: 'flex', height: '90vh', overflowY: "scroll", justifyContent: "center" }}>
+        <Box sx={{ flex: 1, display: 'flex', justifyContent: "center" }}>
             <Box sx={{ m: 2 }}>
                 <InventoryTitle />
                 <InventorySearchBar />
