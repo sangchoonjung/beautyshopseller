@@ -11,17 +11,14 @@ const StepOneItemStyle: SxProps = {
 }
 export function StepTwoInput({ input, handleChange }: { input: ItemState, handleChange: Function }) {
 
-
-
     return <>
         <Box >
             <Box sx={StepOneItemStyle}>
                 <FormControl fullWidth sx={{ my: 1 }} variant="standard">
                     <TextField sx={{ maxWidth: "700px" }} id="filled-basic" label="생산국" fullWidth
-                        defaultValue="대한민국" onChange={handleChange("country")}
+                        value={input.country} onChange={handleChange("country")}
                     />
                 </FormControl>
-
                 <TextField
                     sx={{ my: 1, maxWidth: '700px' }} label="상세설명"
                     variant="outlined"
@@ -32,7 +29,5 @@ export function StepTwoInput({ input, handleChange }: { input: ItemState, handle
                 />
             </Box>
         </Box>
-
     </>
-
 }

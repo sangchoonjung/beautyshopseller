@@ -30,7 +30,6 @@ export function StepTwo({ clickHandle }: { clickHandle: () => void }) {
                 </Box>
                 <ImageSearchToFolder clickHandle={clickHandle} />
             </Box>
-
         </>
     )
 }

@@ -1,12 +1,9 @@
 import Paper from "@mui/material/Paper";
 import Button from "@mui/material/Button";
-import Typography from "@mui/material/Typography";
 import * as React from "react";
 import { AddItemContext } from "../../../context/addItemContext";
 import { ImageItem } from "./StepImage/ImageItem";
-
 import Box from "@mui/material/Box";
-
 import { styled } from "@mui/material/styles";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
