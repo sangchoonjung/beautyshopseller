@@ -6,7 +6,6 @@ import TextField from '@mui/material/TextField';
 import FormControl from '@mui/material/FormControl';
 import { ItemState } from "../AddItemPage";
 const StepOneBoxStyle: SxProps = {
-
     display: 'flex',
     flexDirection: 'column'
 }
@@ -34,7 +33,7 @@ export function StepThree({ input, handleChange }: { input: ItemState, handleCha
                     </TextField>
                 </FormControl>
                 <FormControl fullWidth sx={{ m: 1, px: 0.5 }} variant="standard">
-                    <span style={{ fontWeight: 600 }}>Available :</span>
+                    <span style={{ fontWeight: 600 }}>Deadline :</span>
                     <TextField
                         sx={{ maxWidth: "500px", px: 1 }}
                         id="outlined-select-currency"

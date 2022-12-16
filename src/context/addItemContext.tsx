@@ -25,7 +25,7 @@ export const AddItemProvider = ({ children }: { children: ReactNode }) => {
         category: "cleansing-Foam",
         price: 0,
         amount: 0,
-        country: "",
+        country: "대한민국",
         description: "",
         status: "Active",
         available: "Available"

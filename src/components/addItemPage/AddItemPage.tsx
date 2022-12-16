@@ -25,6 +25,8 @@ export interface ItemState {
     country: string, description: string, status: string,
     available: "Available" | "Unavailable"
 }
+//해야할거 Available 삭제 SubImage 첨부 MinimumAmount 추가 Deadline DiscountRate 추ㅠ가
+//table 정리
 
 
 export default function AddItemPage() {

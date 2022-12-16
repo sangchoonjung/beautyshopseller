@@ -3,7 +3,7 @@ import { categoryList } from "./StepsDescription";
 import * as React from 'react';
 import TextField from '@mui/material/TextField';
 import MenuItem from '@mui/material/MenuItem';
-import { Box, Typography } from "@mui/material";
+import { Box } from "@mui/material";
 import FormControl from '@mui/material/FormControl';
 import Input from '@mui/material/Input';
 import InputLabel from '@mui/material/InputLabel';
@@ -12,7 +12,6 @@ import { ItemState } from "../AddItemPage";
 import { StepEmptyImageBox } from "./StepImage/StepEmptyImageBox";
 import { AddItemContext } from "../../../context/addItemContext";
 import { ImageSearchToFolder } from "./StepImage/ImageSearchToFolder";
-import { ImagePreviewBox } from "./StepImage/ImagePreviewBox";
 import { ImageItem } from "./StepImage/ImageItem";
 
 const StepOneItemStyle: SxProps = {
@@ -22,11 +21,9 @@ export function StepOne({ input, handleChange }: { input: ItemState, handleChang
     const ctx = React.useContext(AddItemContext);
     const ref = React.useRef<HTMLInputElement>(null!)
     const { dragAddHandle, mainFile, fileSelectHandle } = ctx;
-
     const clickHandle = () => {
         ref.current.click()
-    }
-
+    };
     return <>
         <Box onDrop={dragAddHandle!("main")} onDragOver={(evt) => {
             evt.preventDefault();
@@ -36,6 +33,7 @@ export function StepOne({ input, handleChange }: { input: ItemState, handleChang
                 <FormControl fullWidth sx={{ m: 1 }} variant="standard">
                     <TextField
                         onChange={handleChange("name")}
+                        value={input.name}
                         sx={{ maxWidth: "500px" }} id="filled-basic" label="상품명" fullWidth />
                 </FormControl>
                 <FormControl fullWidth sx={{ m: 1 }} variant="standard">
