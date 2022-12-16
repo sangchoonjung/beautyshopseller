@@ -126,7 +126,6 @@ export function StepEndConfirm({ handleReset }: { handleReset: () => void }) {
                         </Button>
                     </Box>
                 </Box>
-
             </Paper >
         </>
     )

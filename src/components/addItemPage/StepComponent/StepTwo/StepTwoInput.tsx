@@ -18,7 +18,7 @@ export function StepTwoInput({ input, handleChange }: { input: ItemState, handle
             <Box sx={StepOneItemStyle}>
                 <FormControl fullWidth sx={{ my: 1 }} variant="standard">
                     <TextField sx={{ maxWidth: "700px" }} id="filled-basic" label="생산국" fullWidth
-                        defaultValue="대한민국" onChange={handleChange("country")}
+                        value={input.country} onChange={handleChange("country")}
                     />
                 </FormControl>
 
@@ -27,6 +27,7 @@ export function StepTwoInput({ input, handleChange }: { input: ItemState, handle
                     variant="outlined"
                     multiline fullWidth
                     rows={3}
+                    value={input.description}
                     placeholder="내용을 입력해주세요."
                     onChange={handleChange("description")}
                 />
