@@ -1,7 +1,7 @@
 import { Box, SxProps } from "@mui/system";
 import { useNavigate } from "react-router";
 import { Button } from "@mui/material";
-import { SearchBar } from "../../common/SearchBar";
+import { SearchBar } from "../../common/CommonSearchBar";
 
 const inventoryBtnStyle: SxProps = {
   backgroundColor: "black",

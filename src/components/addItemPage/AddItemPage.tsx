@@ -23,10 +23,8 @@ const StepBoxStyle: SxProps = {
 export interface ItemState {
     name: string, category: string, amount: number, price: number,
     country: string, description: string, status: string,
-    available: "Available" | "Unavailable"
+    minimumAmount:number,deadline:string,discountRate:number
 }
-//해야할거 Available 삭제 SubImage 첨부 MinimumAmount 추가 Deadline DiscountRate 추ㅠ가
-//table 정리
 
 
 export default function AddItemPage() {

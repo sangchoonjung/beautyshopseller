@@ -23,6 +23,7 @@ export function StepTwoInput({ input, handleChange }: { input: ItemState, handle
                     sx={{ my: 1, maxWidth: '700px' }} label="상세설명"
                     variant="outlined"
                     multiline fullWidth
+                    value={input.description}
                     rows={3}
                     placeholder="내용을 입력해주세요."
                     onChange={handleChange("description")}

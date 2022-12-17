@@ -14,7 +14,7 @@ import { AddItemContext } from "../../../context/addItemContext";
 import { ImageSearchToFolder } from "./StepImage/ImageSearchToFolder";
 import { ImageItem } from "./StepImage/ImageItem";
 
-const StepOneItemStyle: SxProps = {
+export const StepOneItemStyle: SxProps = {
     justifyContent: "space-between", display: "flex", p: 2
 }
 export function StepOne({ input, handleChange }: { input: ItemState, handleChange: Function }) {

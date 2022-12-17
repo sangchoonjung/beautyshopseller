@@ -44,6 +44,14 @@ export function StepEndConfirm({ handleReset }: { handleReset: () => void }) {
       //데이터 전체
       submitForm.append("input", JSON.stringify(ctx.input));
 
+      if(ctx.files?.length??0>0){
+        ctx.files?.forEach(file=>submitForm.append("subImage",file));
+      }
+      //서브이미지 있으면 첨부
+
+
+      console.log(ctx.input)
+
       const response = await fetch(
         "http://localhost:8080/api/product/addProduct",
         {
@@ -100,7 +108,9 @@ export function StepEndConfirm({ handleReset }: { handleReset: () => void }) {
                       Description
                     </StyledTableCell>
                     <StyledTableCell align="center">Status</StyledTableCell>
-                    <StyledTableCell align="center">Available</StyledTableCell>
+                    <StyledTableCell align="center">Min-Discount Amount</StyledTableCell>
+                    <StyledTableCell align="center">Deadline</StyledTableCell>
+                    <StyledTableCell align="center">DiscountRate</StyledTableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
@@ -133,21 +143,19 @@ export function StepEndConfirm({ handleReset }: { handleReset: () => void }) {
                     <StyledTableCell align="center">
                       {ctx.input?.status}
                     </StyledTableCell>
+
+
+
                     <StyledTableCell align="center">
-                      {ctx.input?.available === "Available" ? (
-                        <span
-                          style={{
-                            color: "black",
-                            textShadow:
-                              "1px 1px 2px red, 0 0 1em blue, 0 0 0.2em red",
-                          }}
-                        >
-                          Available
-                        </span>
-                      ) : (
-                        <span> Unavailable</span>
-                      )}
+                      {ctx.input?.minimumAmount}
                     </StyledTableCell>
+                    <StyledTableCell align="center">
+                      {ctx.input?.deadline.toString()}
+                    </StyledTableCell>
+                    <StyledTableCell align="center">
+                      {ctx.input?.discountRate}
+                    </StyledTableCell>
+
                   </StyledTableRow>
                 </TableBody>
               </Table>
