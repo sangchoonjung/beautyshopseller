@@ -1,6 +1,8 @@
 import { createContext, ReactNode, useState } from "react";
 import * as React from 'react';
 import { ItemState } from "../components/addItemPage/AddItemPage";
+import { format } from "date-fns";
+import { addDays }  from "date-fns"
 
 type photoCtx = {
     input?: ItemState;
@@ -28,7 +30,11 @@ export const AddItemProvider = ({ children }: { children: ReactNode }) => {
         country: "대한민국",
         description: "",
         status: "Active",
-        available: "Available"
+        // available: "Available"
+        minimumAmount:0,
+        deadline: format(addDays(Date.now(),7),"yyyy-MM-dd"),
+        discountRate:0
+
     })
     const dragAddHandle = (type?: "main") => (evt: React.DragEvent) => {
         evt.preventDefault();

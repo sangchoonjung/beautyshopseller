@@ -1,5 +1,5 @@
 import { Button, SxProps, Box, TextField } from "@mui/material";
-import { SearchBar } from "../../common/SearchBar";
+import { SearchBar } from "../../common/CommonSearchBar";
 const MessageSearchBarStyle: SxProps = { display: 'flex', height: '50px', alignItems: "center", mx: '3px' }
 export function MessageSearchBar() {
 
