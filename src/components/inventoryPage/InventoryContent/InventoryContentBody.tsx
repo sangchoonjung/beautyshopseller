@@ -10,6 +10,8 @@ import Paper from "@mui/material/Paper";
 import Checkbox from "@mui/material/Checkbox";
 import { TableHeaders } from "./ContentParts/TableHeaers";
 import { InventoryItemData } from "./ContentParts/InventoryDummyData";
+import { format } from "date-fns";
+import Tooltip from '@mui/material/Tooltip';
 
 function descendingComparator<T>(a: T, b: T, orderBy: keyof T) {
   if (b[orderBy] < a[orderBy]) {
@@ -122,7 +124,7 @@ export default function InventoryContentBody({
         {/* selected.length 선택한거 개수 */}
         <TableContainer>
           <Table
-            sx={{ minWidth: 750 }}
+            sx={{ minWidth: '1200px' }}
             aria-labelledby="tableTitle"
             size={"medium"}
           >
@@ -144,9 +146,7 @@ export default function InventoryContentBody({
                   return (
                     <TableRow
                       hover
-                      onClick={(event) =>
-                        handleClick(event, row.Name.toString())
-                      }
+                      onClick={(event) => handleClick(event, row.Name.toString())}
                       role="checkbox"
                       aria-checked={isItemSelected}
                       tabIndex={-1}
@@ -171,19 +171,34 @@ export default function InventoryContentBody({
                       >
                         {row.Status}
                       </TableCell>
-                      <TableCell align="right">
-                        <img src={row.Image} />{" "}
+                      <TableCell sx={{ cursor: "pointer", padding: '2px' }} onClick={() => window.open(row.Image)} align="right">
+                        <img src={row.Image} style={{
+                          width: '230px',
+                          aspectRatio: "4/3"
+                        }} />{" "}
                       </TableCell>
-                      <TableCell align="right">{row.SKU}</TableCell>
+                      <TableCell align="right">
+                        <Tooltip title={
+                          <h3>{row.SKU} <button onClick={() => navigator.clipboard.writeText(row.SKU.toString()).then(() => alert('copye complete'))} style={{ color: "red" }} > COPY</button> </h3>
+
+                        } >
+                          <Box>
+                            {row.SKU.toString().split("-")[0] + "..."}
+                          </Box>
+                        </Tooltip>
+                      </TableCell>
                       <TableCell align="right">{row.Name}</TableCell>
-                      <TableCell align="right">{row.Created}</TableCell>
-                      <TableCell align="right">{row.Available}</TableCell>
+                      <TableCell align="right">{
+                        format(new Date(row.Created), "yyyy-MM-dd")
+                      }</TableCell>
+                      {/* <TableCell align="right">{row.Available}</TableCell> */}
                       <TableCell align="right">{row.FeePerSold}</TableCell>
                       <TableCell align="right">{row.Price}</TableCell>
                       <TableCell align="right">
                         {row.ProductQuantity}
-                        <TableCell align="right">{row.Price}</TableCell>
                       </TableCell>
+                      <TableCell align="right">{row.MinimumQuantity}</TableCell>
+                      <TableCell align="right">{row.DiscountRate}</TableCell>
                     </TableRow>
                   );
                 })}

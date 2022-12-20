@@ -1,14 +1,7 @@
 import Box from "@mui/material/Box";
-import Button from "@mui/material/Button";
-import {
-  //   datas,
-  InventoryItemData,
-} from "./InventoryContent/ContentParts/InventoryDummyData";
+import { InventoryItemData } from "./InventoryContent/ContentParts/InventoryDummyData";
 import InventoryContent from "./InventoryContent/InventoryContentBody";
-import {
-  InventoryFilter,
-  StatusList,
-} from "./InventoryContent/InventoryFilter";
+import { InventoryFilter } from "./InventoryContent/InventoryFilter";
 import { InventorySearchBar } from "./InventoryContent/InventorySearchBar";
 import { InventoryTitle } from "./InventoryContent/InventoryTItle";
 import React from "react";
@@ -16,8 +9,7 @@ import React from "react";
 export default function InventoryPage() {
   const [rows, setRows] = React.useState<InventoryItemData[]>([]);
   const [filter, setFilter] = React.useState<string>("All");
-  //   console.log(localStorage.getItem("token"));
-
+  const [filteredItems, setFilteredItems] = React.useState<InventoryItemData[]>(rows);
   React.useEffect(() => {
     const getInventoryData = async () => {
       const response = await fetch(
@@ -29,18 +21,24 @@ export default function InventoryPage() {
           },
         }
       );
-      const data = await response.json();
+      const data: { result: boolean, message: string | InventoryItemData[] } = await response.json();
       console.log(data);
-      setRows(data?.message! as InventoryItemData[]);
-    };
+      if (data.result) {
+        setRows(data?.message! as InventoryItemData[]);
+      } else {
 
-    if (filter !== "All") {
-      setRows((current) => current!.filter((i) => i.Status === filter));
-    } else {
-      setRows((current) => current!);
-    }
+      }
+    };
     getInventoryData();
-  }, [filter]);
+
+  }, [])
+  React.useEffect(() => {
+    if (filter !== "All") {
+      setFilteredItems(rows!.filter((i) => i.Status === filter));
+    } else {
+      setFilteredItems(rows);
+    }
+  }, [filter, rows]);
 
   return (
     <Box sx={{ flex: 1, display: "flex", justifyContent: "center" }}>
@@ -48,7 +46,7 @@ export default function InventoryPage() {
         <InventoryTitle />
         <InventorySearchBar />
         <InventoryFilter setFilter={setFilter} />
-        <InventoryContent rows={rows} />
+        <InventoryContent rows={filteredItems} />
       </Box>
     </Box>
   );

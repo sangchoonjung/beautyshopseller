@@ -11,6 +11,8 @@ import TableCell, { tableCellClasses } from "@mui/material/TableCell";
 import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
+import { useNavigate } from "react-router-dom";
+import { InventoryItemData } from "../../inventoryPage/InventoryContent/ContentParts/InventoryDummyData";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -33,7 +35,7 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 
 export function StepEndConfirm({ handleReset }: { handleReset: () => void }) {
   const ctx = React.useContext(AddItemContext);
-
+  const navi = useNavigate()
   const addItemSubmitHandle = async () => {
     try {
       // ctx.mainFile && ctx.input?.name &&
@@ -44,8 +46,8 @@ export function StepEndConfirm({ handleReset }: { handleReset: () => void }) {
       //데이터 전체
       submitForm.append("input", JSON.stringify(ctx.input));
 
-      if(ctx.files?.length??0>0){
-        ctx.files?.forEach(file=>submitForm.append("subImage",file));
+      if (ctx.files?.length ?? 0 > 0) {
+        ctx.files?.forEach(file => submitForm.append("subImage", file));
       }
       //서브이미지 있으면 첨부
 
@@ -62,7 +64,12 @@ export function StepEndConfirm({ handleReset }: { handleReset: () => void }) {
           },
         }
       );
-      console.log(await response.json());
+      const finish: { result: boolean, message: InventoryItemData | string } = await response.json()
+      if (finish.result) {
+        navi("/inventory")
+      }
+
+
     } catch (e: unknown) {
       if (e instanceof Error) {
         console.log(e.message);
