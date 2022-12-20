@@ -35,7 +35,7 @@ const headCells: readonly HeadCell[] = [
   },
   {
     id: "Image",
-    numeric: true,
+    numeric: false,
     disablePadding: false,
     label: "Image",
   },
@@ -100,9 +100,9 @@ export function TableHeaders(props: EnhancedTableProps) {
   } = props;
   const createSortHandler =
     (property: keyof InventoryItemData) =>
-      (event: React.MouseEvent<unknown>) => {
-        onRequestSort(event, property);
-      };
+    (event: React.MouseEvent<unknown>) => {
+      onRequestSort(event, property);
+    };
 
   return (
     <TableHead
@@ -129,10 +129,14 @@ export function TableHeaders(props: EnhancedTableProps) {
         {headCells.map((headCell) => (
           <TableCell
             key={headCell.id}
-            align={headCell.numeric ? "right" : "left"}
+            align={headCell.numeric ? "right" : "center"}
             padding={headCell.disablePadding ? "none" : "normal"}
             sortDirection={orderBy === headCell.id ? order : false}
-            sx={headCell.id === "Image" ? { width: '250px' } : { minWidth: '80px' }}
+            sx={
+              headCell.id === "Image"
+                ? { width: "250px" }
+                : { minWidth: "80px" }
+            }
           >
             <TableSortLabel
               active={orderBy === headCell.id}
