@@ -11,7 +11,7 @@ import Checkbox from "@mui/material/Checkbox";
 import { TableHeaders } from "./ContentParts/TableHeaers";
 import { InventoryItemData } from "./ContentParts/InventoryDummyData";
 import { format } from "date-fns";
-import Tooltip from '@mui/material/Tooltip';
+import Tooltip from "@mui/material/Tooltip";
 
 function descendingComparator<T>(a: T, b: T, orderBy: keyof T) {
   if (b[orderBy] < a[orderBy]) {
@@ -124,7 +124,7 @@ export default function InventoryContentBody({
         {/* selected.length 선택한거 개수 */}
         <TableContainer>
           <Table
-            sx={{ minWidth: '1200px' }}
+            sx={{ minWidth: "1200px" }}
             aria-labelledby="tableTitle"
             size={"medium"}
           >
@@ -146,7 +146,9 @@ export default function InventoryContentBody({
                   return (
                     <TableRow
                       hover
-                      onClick={(event) => handleClick(event, row.Name.toString())}
+                      onClick={(event) =>
+                        handleClick(event, row.Name.toString())
+                      }
                       role="checkbox"
                       aria-checked={isItemSelected}
                       tabIndex={-1}
@@ -168,37 +170,59 @@ export default function InventoryContentBody({
                         scope="row"
                         sx={{ width: "150px" }}
                         padding="none"
+                        align="center"
                       >
                         {row.Status}
                       </TableCell>
-                      <TableCell sx={{ cursor: "pointer", padding: '2px' }} onClick={() => window.open(row.Image)} align="right">
-                        <img src={row.Image} style={{
-                          width: '230px',
-                          aspectRatio: "4/3"
-                        }} />{" "}
+                      <TableCell
+                        sx={{ cursor: "pointer", padding: "2px" }}
+                        onClick={() => window.open(row.Image)}
+                        align="right"
+                      >
+                        <img
+                          src={row.Image}
+                          style={{
+                            width: "230px",
+                            aspectRatio: "4/3",
+                          }}
+                        />{" "}
                       </TableCell>
                       <TableCell align="right">
-                        <Tooltip title={
-                          <h3>{row.SKU} <button onClick={() => navigator.clipboard.writeText(row.SKU.toString()).then(() => alert('copye complete'))} style={{ color: "red" }} > COPY</button> </h3>
-
-                        } >
-                          <Box>
-                            {row.SKU.toString().split("-")[0] + "..."}
-                          </Box>
+                        <Tooltip
+                          title={
+                            <h3>
+                              {row.SKU}{" "}
+                              <button
+                                onClick={() =>
+                                  navigator.clipboard
+                                    .writeText(row.SKU.toString())
+                                    .then(() => alert("copye complete"))
+                                }
+                                style={{ color: "red" }}
+                              >
+                                {" "}
+                                COPY
+                              </button>{" "}
+                            </h3>
+                          }
+                        >
+                          <Box>{row.SKU.toString().split("-")[0] + "..."}</Box>
                         </Tooltip>
                       </TableCell>
                       <TableCell align="right">{row.Name}</TableCell>
-                      <TableCell align="right">{
-                        format(new Date(row.Created), "yyyy-MM-dd")
-                      }</TableCell>
-                      {/* <TableCell align="right">{row.Available}</TableCell> */}
-                      <TableCell align="right">{row.FeePerSold}</TableCell>
-                      <TableCell align="right">{row.Price}</TableCell>
                       <TableCell align="right">
+                        {format(new Date(row.Created), "yyyy-MM-dd")}
+                      </TableCell>
+                      {/* <TableCell align="right">{row.Available}</TableCell> */}
+                      <TableCell align="center">{row.FeePerSold}</TableCell>
+                      <TableCell align="center">{row.Price}</TableCell>
+                      <TableCell align="center">
                         {row.ProductQuantity}
                       </TableCell>
-                      <TableCell align="right">{row.MinimumQuantity}</TableCell>
-                      <TableCell align="right">{row.DiscountRate}</TableCell>
+                      <TableCell align="center">
+                        {row.MinimumQuantity}
+                      </TableCell>
+                      <TableCell align="center">{row.DiscountRate}</TableCell>
                     </TableRow>
                   );
                 })}
