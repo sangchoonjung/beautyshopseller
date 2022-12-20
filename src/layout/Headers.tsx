@@ -44,16 +44,16 @@ function Headers() {
           <Box
             sx={{ display: "flex", flexDirection: "row", alignItems: "center" }}
           >
-            <IconButton
-              size="large"
-              edge="start"
+            <Box
+              // size="large"
+              // edge="start"
               color="inherit"
               aria-label="menu"
               sx={{ mr: 2 }}
             >
               {/* <MenuIcon /> */}
               <LeftDrawer />
-            </IconButton>
+            </Box>
             <Box>
               <img
                 src={"/images/BeautyShopLogo.png"}

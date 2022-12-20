@@ -6,7 +6,7 @@ function MainHeaderBox() {
     <Box sx={{ display: "flex", flexDirection: "row" }}>
       {headerBoxCategory.map((one) => {
         return (
-          <Box>
+          <Box key={one}>
             <Box
               sx={{
                 border: "solid 1px #999999",

@@ -57,12 +57,7 @@ const headCells: readonly HeadCell[] = [
     disablePadding: false,
     label: "Date Created",
   },
-  {
-    id: "Available",
-    numeric: true,
-    disablePadding: false,
-    label: "Available",
-  },
+
   {
     id: "FeePerSold",
     numeric: true,
@@ -73,13 +68,25 @@ const headCells: readonly HeadCell[] = [
     id: "Price",
     numeric: true,
     disablePadding: false,
-    label: "Price and shipping cost",
+    label: "Price",
   },
   {
     id: "ProductQuantity",
     numeric: true,
     disablePadding: false,
-    label: "ProductQuantity",
+    label: "Product Quantity",
+  },
+  {
+    id: "MinimumQuantity",
+    numeric: true,
+    disablePadding: false,
+    label: "Min-DC Quantity",
+  },
+  {
+    id: "DiscountRate",
+    numeric: true,
+    disablePadding: false,
+    label: "DC Rate",
   },
 ];
 export function TableHeaders(props: EnhancedTableProps) {
@@ -93,9 +100,9 @@ export function TableHeaders(props: EnhancedTableProps) {
   } = props;
   const createSortHandler =
     (property: keyof InventoryItemData) =>
-    (event: React.MouseEvent<unknown>) => {
-      onRequestSort(event, property);
-    };
+      (event: React.MouseEvent<unknown>) => {
+        onRequestSort(event, property);
+      };
 
   return (
     <TableHead
@@ -125,6 +132,7 @@ export function TableHeaders(props: EnhancedTableProps) {
             align={headCell.numeric ? "right" : "left"}
             padding={headCell.disablePadding ? "none" : "normal"}
             sortDirection={orderBy === headCell.id ? order : false}
+            sx={headCell.id === "Image" ? { width: '250px' } : { minWidth: '80px' }}
           >
             <TableSortLabel
               active={orderBy === headCell.id}

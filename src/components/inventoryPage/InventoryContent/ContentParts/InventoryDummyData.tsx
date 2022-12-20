@@ -4,10 +4,12 @@ export interface InventoryItemData {
   SKU: number;
   Name: string;
   Created: string;
-  Available: string;
+  // Available: string;
   FeePerSold: number;
   Price: number;
   ProductQuantity: number;
+  MinimumQuantity: number;
+  DiscountRate: number;
 }
 
 // function createData(
