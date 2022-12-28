@@ -1,6 +1,7 @@
 import { Box, Button, TextField, Typography } from "@mui/material";
 import React, { useState, useContext } from "react";
 import { LoginStateContext } from "../../context/LoginStateContext";
+import SERVER_IP from "../../util/serverIP";
 
 export type LoginAndSignUpInputValueType = {
   email: string;
@@ -27,22 +28,19 @@ function PartOfSignUpInput() {
   const signUpSubmitHandler: React.FormEventHandler = async (evt) => {
     evt.preventDefault();
     if (inputValue.password === inputValue.passwordConfirm) {
-      const response = await fetch(
-        "http://localhost:8080/api/account/SellerRegister",
-        {
-          method: "POST",
-          body: JSON.stringify({
-            email: inputValue.email,
-            passWord: inputValue.password,
-            phoneNumber: inputValue.phoneNumber,
-            birth: inputValue.birth,
-            nickName: inputValue.nickName,
-          }),
-          headers: {
-            "Content-type": "application/json",
-          },
-        }
-      );
+      const response = await fetch(SERVER_IP + "/api/account/SellerRegister", {
+        method: "POST",
+        body: JSON.stringify({
+          email: inputValue.email,
+          passWord: inputValue.password,
+          phoneNumber: inputValue.phoneNumber,
+          birth: inputValue.birth,
+          nickName: inputValue.nickName,
+        }),
+        headers: {
+          "Content-type": "application/json",
+        },
+      });
       const data = await response.json();
       console.log(data);
       alert("가입에 성공 하였습니다.");
@@ -54,7 +52,7 @@ function PartOfSignUpInput() {
 
   const checkEmail: React.MouseEventHandler = async (evt) => {
     evt.preventDefault();
-    const response = await fetch("http://localhost:8080/api/account/idCheck", {
+    const response = await fetch(SERVER_IP + "/api/account/idCheck", {
       method: "POST",
       body: JSON.stringify({
         email: inputValue.email,

@@ -127,6 +127,7 @@ export default function InventoryContentBody({
             sx={{ minWidth: "1200px" }}
             aria-labelledby="tableTitle"
             size={"medium"}
+            style={{ textAlign: "center" }}
           >
             <TableHeaders
               numSelected={selected.length}
@@ -136,7 +137,7 @@ export default function InventoryContentBody({
               onRequestSort={handleRequestSort}
               rowCount={rows.length}
             />
-            <TableBody>
+            <TableBody style={{ textAlign: "center" }}>
               {stableSort(rows, getComparator(order, orderBy))
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                 .map((row, index) => {
@@ -196,7 +197,7 @@ export default function InventoryContentBody({
                                 onClick={() =>
                                   navigator.clipboard
                                     .writeText(row.SKU.toString())
-                                    .then(() => alert("copye complete"))
+                                    .then(() => alert("copy complete"))
                                 }
                                 style={{ color: "red" }}
                               >
@@ -209,12 +210,12 @@ export default function InventoryContentBody({
                           <Box>{row.SKU.toString().split("-")[0] + "..."}</Box>
                         </Tooltip>
                       </TableCell>
-                      <TableCell align="right">{row.Name}</TableCell>
-                      <TableCell align="right">
+                      <TableCell align="center">{row.Name}</TableCell>
+                      <TableCell align="center">
                         {format(new Date(row.Created), "yyyy-MM-dd")}
                       </TableCell>
                       {/* <TableCell align="right">{row.Available}</TableCell> */}
-                      <TableCell align="center">{row.FeePerSold}</TableCell>
+                      <TableCell align="center">{row.SoldQuantity}</TableCell>
                       <TableCell align="center">{row.Price}</TableCell>
                       <TableCell align="center">
                         {row.ProductQuantity}

@@ -2,6 +2,7 @@ import { Box, Button, TextField, Typography } from "@mui/material";
 import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { LoginStateContext } from "../../context/LoginStateContext";
+import SERVER_IP from "../../util/serverIP";
 
 export type LoginAndSignUpInputValueType = {
   email: string;
@@ -30,16 +31,13 @@ function RegisterContainer() {
   const signUpSubmitHandler: React.FormEventHandler = async (evt) => {
     evt.preventDefault();
     if (inputValue.password === inputValue.passwordConfirm) {
-      const response = await fetch(
-        "http://localhost:8080/api/account/SellerRegister",
-        {
-          method: "POST",
-          body: JSON.stringify(inputValue),
-          headers: {
-            "Content-type": "application/json",
-          },
-        }
-      );
+      const response = await fetch(SERVER_IP + "/api/account/SellerRegister", {
+        method: "POST",
+        body: JSON.stringify(inputValue),
+        headers: {
+          "Content-type": "application/json",
+        },
+      });
       const data = await response.json();
       console.log(data);
       if (data.result) {
@@ -55,18 +53,15 @@ function RegisterContainer() {
 
   const checkEmail: React.MouseEventHandler = async (evt) => {
     evt.preventDefault();
-    const response = await fetch(
-      "http://localhost:8080/api/account/SellerIdCheck",
-      {
-        method: "POST",
-        body: JSON.stringify({
-          email: inputValue.email,
-        }),
-        headers: {
-          "Content-type": "application/json",
-        },
-      }
-    );
+    const response = await fetch(SERVER_IP + "/api/account/SellerIdCheck", {
+      method: "POST",
+      body: JSON.stringify({
+        email: inputValue.email,
+      }),
+      headers: {
+        "Content-type": "application/json",
+      },
+    });
     const data = await response.json();
     if (data.result) {
       alert("사용가능한 아이디입니다.");

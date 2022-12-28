@@ -59,10 +59,10 @@ const headCells: readonly HeadCell[] = [
   },
 
   {
-    id: "FeePerSold",
+    id: "SoldQuantity",
     numeric: true,
     disablePadding: false,
-    label: "Estimated fee per unit sold",
+    label: "SoldQuantity",
   },
   {
     id: "Price",
@@ -129,7 +129,7 @@ export function TableHeaders(props: EnhancedTableProps) {
         {headCells.map((headCell) => (
           <TableCell
             key={headCell.id}
-            align={headCell.numeric ? "right" : "center"}
+            align={"center"}
             padding={headCell.disablePadding ? "none" : "normal"}
             sortDirection={orderBy === headCell.id ? order : false}
             sx={

@@ -10,6 +10,7 @@ export interface InventoryItemData {
   ProductQuantity: number;
   MinimumQuantity: number;
   DiscountRate: number;
+  SoldQuantity: number;
 }
 
 // function createData(

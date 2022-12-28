@@ -1,6 +1,7 @@
 import { Box, Button, TextField } from "@mui/material";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import SERVER_IP from "../../util/serverIP";
 import { LoginAndSignUpInputValueType } from "../aboutSignUp/PartOfSignUpInput";
 
 function PartOfLoginInput() {
@@ -15,16 +16,13 @@ function PartOfLoginInput() {
     evt.preventDefault();
     if (inputValue.email.length === 0 || inputValue.password.length === 0)
       return;
-    const response = await fetch(
-      "http://localhost:8080/api/account/SellerLogin",
-      {
-        method: "POST",
-        body: JSON.stringify(inputValue),
-        headers: {
-          "Content-type": "application/json",
-        },
-      }
-    );
+    const response = await fetch(SERVER_IP + "/api/account/SellerLogin", {
+      method: "POST",
+      body: JSON.stringify(inputValue),
+      headers: {
+        "Content-type": "application/json",
+      },
+    });
     const data = await response.json();
     console.log(data.token, "토큰");
     if (data.result) {
