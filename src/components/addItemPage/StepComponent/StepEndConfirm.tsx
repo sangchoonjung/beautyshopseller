@@ -13,6 +13,7 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import { useNavigate } from "react-router-dom";
 import { InventoryItemData } from "../../inventoryPage/InventoryContent/ContentParts/InventoryDummyData";
+import SERVER_IP from "../../../util/serverIP";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -35,7 +36,7 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 
 export function StepEndConfirm({ handleReset }: { handleReset: () => void }) {
   const ctx = React.useContext(AddItemContext);
-  const navi = useNavigate()
+  const navi = useNavigate();
   const addItemSubmitHandle = async () => {
     try {
       // ctx.mainFile && ctx.input?.name &&
@@ -47,29 +48,24 @@ export function StepEndConfirm({ handleReset }: { handleReset: () => void }) {
       submitForm.append("input", JSON.stringify(ctx.input));
 
       if (ctx.files?.length ?? 0 > 0) {
-        ctx.files?.forEach(file => submitForm.append("subImage", file));
+        ctx.files?.forEach((file) => submitForm.append("subImage", file));
       }
       //서브이미지 있으면 첨부
 
+      console.log(ctx.input);
 
-      console.log(ctx.input)
-
-      const response = await fetch(
-        "http://localhost:8080/api/product/addProduct",
-        {
-          method: "POST",
-          body: submitForm,
-          headers: {
-            "x-access-token": localStorage.getItem("token") as string,
-          },
-        }
-      );
-      const finish: { result: boolean, message: InventoryItemData | string } = await response.json()
+      const response = await fetch(SERVER_IP + "/api/product/addProduct", {
+        method: "POST",
+        body: submitForm,
+        headers: {
+          "x-access-token": localStorage.getItem("token") as string,
+        },
+      });
+      const finish: { result: boolean; message: InventoryItemData | string } =
+        await response.json();
       if (finish.result) {
-        navi("/inventory")
+        navi("/inventory");
       }
-
-
     } catch (e: unknown) {
       if (e instanceof Error) {
         console.log(e.message);
@@ -115,9 +111,13 @@ export function StepEndConfirm({ handleReset }: { handleReset: () => void }) {
                       Description
                     </StyledTableCell>
                     <StyledTableCell align="center">Status</StyledTableCell>
-                    <StyledTableCell align="center">Min-Discount Amount</StyledTableCell>
+                    <StyledTableCell align="center">
+                      Min-Discount Amount
+                    </StyledTableCell>
                     <StyledTableCell align="center">Deadline</StyledTableCell>
-                    <StyledTableCell align="center">DiscountRate</StyledTableCell>
+                    <StyledTableCell align="center">
+                      DiscountRate
+                    </StyledTableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
@@ -151,8 +151,6 @@ export function StepEndConfirm({ handleReset }: { handleReset: () => void }) {
                       {ctx.input?.status}
                     </StyledTableCell>
 
-
-
                     <StyledTableCell align="center">
                       {ctx.input?.minimumAmount}
                     </StyledTableCell>
@@ -162,7 +160,6 @@ export function StepEndConfirm({ handleReset }: { handleReset: () => void }) {
                     <StyledTableCell align="center">
                       {ctx.input?.discountRate}
                     </StyledTableCell>
-
                   </StyledTableRow>
                 </TableBody>
               </Table>

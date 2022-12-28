@@ -18,6 +18,7 @@ function LoginContainer() {
       <Box sx={{ width: "200px", height: "200px", mb: 3 }}>
         <img src="/images/BeautyShopLogo.png" width={"100%"} height={"100%"} />
       </Box>
+
       <Box
         sx={{
           maxWidth: "500px",
@@ -25,7 +26,7 @@ function LoginContainer() {
         }}
       >
         <PartOfLoginInput />
-        <PartOfFindIdAndPass />
+        <br />
         <PartOfSignUpButton />
       </Box>
     </Box>

@@ -5,33 +5,32 @@ import { InventoryFilter } from "./InventoryContent/InventoryFilter";
 import { InventorySearchBar } from "./InventoryContent/InventorySearchBar";
 import { InventoryTitle } from "./InventoryContent/InventoryTItle";
 import React from "react";
+import SERVER_IP from "../../util/serverIP";
 
 export default function InventoryPage() {
   const [rows, setRows] = React.useState<InventoryItemData[]>([]);
   const [filter, setFilter] = React.useState<string>("All");
-  const [filteredItems, setFilteredItems] = React.useState<InventoryItemData[]>(rows);
+  const [filteredItems, setFilteredItems] =
+    React.useState<InventoryItemData[]>(rows);
   React.useEffect(() => {
     const getInventoryData = async () => {
-      const response = await fetch(
-        "http://localhost:8080/api/product/getProductList",
-        {
-          method: "POST",
-          headers: {
-            "x-access-token": localStorage.getItem("token") as string,
-          },
-        }
-      );
-      const data: { result: boolean, message: string | InventoryItemData[] } = await response.json();
+      const response = await fetch(SERVER_IP + "/api/product/getProductList", {
+        method: "POST",
+        headers: {
+          "x-access-token": localStorage.getItem("token") as string,
+        },
+      });
+      const data: { result: boolean; message: string | InventoryItemData[] } =
+        await response.json();
       console.log(data);
       if (data.result) {
         setRows(data?.message! as InventoryItemData[]);
       } else {
-
       }
     };
     getInventoryData();
+  }, []);
 
-  }, [])
   React.useEffect(() => {
     if (filter !== "All") {
       setFilteredItems(rows!.filter((i) => i.Status === filter));

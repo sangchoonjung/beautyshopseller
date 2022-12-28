@@ -3,6 +3,7 @@ import { experimentalStyled as styled } from "@mui/material/styles";
 import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Grid";
 import { minHeight } from "@mui/system";
+import { useNavigate } from "react-router-dom";
 
 function MainBodyBox() {
   const Item = styled(Paper)(({ theme }) => ({
@@ -12,8 +13,13 @@ function MainBodyBox() {
     textAlign: "center",
     color: theme.palette.text.secondary,
     height: "50vh",
-    width: "20vw"
+    width: "20vw",
   }));
+  const navi = useNavigate();
+
+  const goToInventory = () => {
+    navi("/inventory");
+  };
 
   return (
     <Box sx={{ display: "flex", flexDirection: "column", m: 3 }}>
@@ -23,10 +29,9 @@ function MainBodyBox() {
             첫 번째 제품 목록 시작하기
           </Typography>
           <Typography sx={{ pt: 3 }}>
-            제품 목록 안내서는 첫 번째 목록을 작성하기 위한 모든 요구 사항을
-            안내합니다.
+            제품 목록은 제품등록을 작성하기 위한 모든 요구 사항을 안내합니다.
           </Typography>
-          <Button variant="contained" sx={{ mt: 5 }}>
+          <Button variant="contained" sx={{ mt: 5 }} onClick={goToInventory}>
             스타팅
           </Button>
         </Box>
@@ -47,11 +52,10 @@ function MainBodyBox() {
           container
           spacing={{ xs: 2, md: 3 }}
           columns={{ xs: 6, sm: 6, md: 12 }}
-
         >
           {["page1", "page2", "page3", "page4"].map((one, index) => (
-            <Grid item xs={6} sm={4} md={3} key={index} >
-              <Item elevation={3} >{one}aaaaaaaaaaaaaaaaaassssssssssssssssssssss</Item>
+            <Grid item xs={6} sm={4} md={3} key={index}>
+              <Item elevation={3}>{one}</Item>
             </Grid>
           ))}
         </Grid>
