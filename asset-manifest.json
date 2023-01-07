@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/beautyshopseller/static/css/main.e6c13ad2.css",
-    "main.js": "/beautyshopseller/static/js/main.49c44034.js",
+    "main.js": "/beautyshopseller/static/js/main.e9d1c5ba.js",
     "index.html": "/beautyshopseller/index.html",
     "main.e6c13ad2.css.map": "/beautyshopseller/static/css/main.e6c13ad2.css.map",
-    "main.49c44034.js.map": "/beautyshopseller/static/js/main.49c44034.js.map"
+    "main.e9d1c5ba.js.map": "/beautyshopseller/static/js/main.e9d1c5ba.js.map"
   },
   "entrypoints": [
     "static/css/main.e6c13ad2.css",
-    "static/js/main.49c44034.js"
+    "static/js/main.e9d1c5ba.js"
   ]
 }
